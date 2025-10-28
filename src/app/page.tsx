@@ -20,7 +20,7 @@ export default function Home() {
       >
 
         <button className="bg-white text-black py-2 px-4 rounded-lg font-bold">Katherine Jimenez
-          Futura abogada con conocimiento en base de datos
+          Futura abogada con conocimiento en base de datos y desarrollo web
         </button>
         
       </div>
