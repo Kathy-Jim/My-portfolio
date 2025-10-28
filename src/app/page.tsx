@@ -19,7 +19,9 @@ export default function Home() {
         style={{ backgroundImage: "url('/img/back_ground.jpg')" }}
       >
 
-        <button className="bg-white text-black py-2 px-4 rounded-lg font-bold"></button>
+        <button className="bg-white text-black py-2 px-4 rounded-lg font-bold">Katherine Jimenez
+          Futura abogada
+        </button>
         
       </div>
     </>
