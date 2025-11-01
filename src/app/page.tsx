@@ -5,14 +5,13 @@ export default function Home() {
   return (
     <>
       <header className="bg-fuchsia-950 text-white mb-16">
-        {/* ... (código del header sin cambios) ... */}
         <div className="container mx-auto flex justify-between items-center p-4 sm:p-6 lg:p-10">
             <span className="text-xl font-semibold">Mi portafolio</span>
             <div className="flex space-x-4">
                 <button className="text-white py-2 px-4 rounded-lg font-bold">
                     Conexiones
                 </button>
-                <button className="bg-white text-black py-2 px-4 rounded-lg font-bold">
+                <button className="bg-black text-white py-2 px-4 rounded-lg font-bold">
                     Aspiraciones
                 </button>
             </div>
@@ -35,6 +34,10 @@ export default function Home() {
         </div>
 
       </div>
+
+      <body>
+        
+      </body>
     </>
   );
 }
