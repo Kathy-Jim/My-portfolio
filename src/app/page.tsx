@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
-// useRouter se está importando pero no se usa en el código final del carrusel
-// Si no lo vas a usar para navegar, se puede eliminar. Lo dejo por si lo necesitas.
 import { useRouter } from "next/navigation";
 
 // Carrusel de educación
@@ -36,9 +34,6 @@ export default function Home() {
   // Controladores del carrusel
   const handlePrev = () => instanceRef.current?.prev();
   const handleNext = () => instanceRef.current?.next();
-
-  // Puedes descomentar si quieres usar el router para, por ejemplo, navegar al hacer click
-  // const router = useRouter(); 
 
   return (
     <>
@@ -74,7 +69,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 🙋 Sobre mí - INICIO DE LA SECCIÓN NO MODIFICADA */}
+
       <div className="**bg-fuchsia-300** text-black">
         <div className="container mx-auto p-8">
           <br />
@@ -89,24 +84,22 @@ export default function Home() {
               alt="profile_photo"
               width={350}
               height={0} // Ajuste de height
-              style={{ width: 'auto', height: 'auto' }} // Tailwind no necesita esto, pero para TS es mejor
+              style={{ width: 'auto', height: 'auto' }}
             />
           </div>
         </div>
       </div>
 
-      {/* 🎓 Educación (CON CARRUSEL IMPLEMENTADO) */}
-        <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+
+      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl font-bold mb-8">Educación</h2>
 
         <div className="relative">
-          {/* Contenedor del Carrusel */}
           <div ref={sliderRef} className="keen-slider overflow-hidden">
             {carouselImages.map((img) => (
               <div
                 key={img.id}
                 className="keen-slider__slide flex justify-center p-2"
-              // Ejemplo de uso: onClick={() => router.push(`/education/${img.id}`)}
               >
                 <div className="flex flex-col items-center p-4 border rounded-xl shadow-lg transition-transform duration-300 hover:scale-[1.02] bg-white/50">
                   <Image
@@ -114,7 +107,7 @@ export default function Home() {
                     alt={img.title}
                     width={250}
                     height={150}
-                    // Ajustes para que los logos se vean bien y uniformes
+                    
                     className="rounded-lg object-contain h-36 w-auto"
                   />
                   <p className="mt-4 text-center font-semibold text-gray-800">{img.title}</p>
@@ -123,7 +116,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Botones de navegación (solo se muestran en pantallas grandes para no estorbar mucho) */}
           <button
             onClick={handlePrev}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-fuchsia-950/70 hover:bg-fuchsia-950 text-white p-2 rounded-full shadow-lg transition duration-300 z-10 hidden md:block"
@@ -139,7 +131,6 @@ export default function Home() {
             ▶
           </button>
 
-          {/* Puntos de navegación para móviles y escritorio */}
           <div className="flex justify-center mt-6 space-x-2">
             {instanceRef.current &&
               [...Array(instanceRef.current.track.details.slides.length).keys()].map(idx => (
@@ -154,6 +145,11 @@ export default function Home() {
             }
           </div>
         </div>
+      </section>
+
+      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+        <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Proyectos</h2>
+
       </section>
     </>
   );
