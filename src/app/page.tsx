@@ -5,7 +5,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import router from "next/router";
+//import router from "next/router";
 
 // Carrusel de educación
 const carouselImages = [
@@ -52,9 +52,37 @@ export default function Home() {
           <span className="text-xl font-semibold">Mi portafolio</span>
           <div className="flex space-x-4">
 
-            <button className="text-white py-2 px-4 rounded-lg font-bold">
-              Conexiones
-            </button>
+            <div>
+              <a
+                href='https://www.linkedin.com/in/katherine-jimenez-b9754a367/'
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <Image
+                  src={"/img/Image/logo_lin.png"}
+                  width={35}
+                  height={100}
+                  alt={"100"}
+                />
+              </a>
+            </div>
+
+            <div>
+              <a
+                href='https://github.com/Kathy-Jim'
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <Image
+                  src={"/img/Image/logo_github.png"}
+                  width={35}
+                  height={100}
+                  alt="No se"
+                />
+              </a>
+            </div>
+
+
 
             <Link href="/Aspiraciones" passHref>
               <span className="bg-white text-black py-2 px-4 rounded-lg font-bold cursor-pointer inline-block">
@@ -222,7 +250,7 @@ export default function Home() {
 
       <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Logros</h2>
-        <p className="text-black" >En edición :)</p>
+        <p className="text-black" >En edición :</p>
       </section>
     </>
   );
