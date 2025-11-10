@@ -5,7 +5,80 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-//import router from "next/router";
+import React from 'react';
+
+
+type Hito = {
+  id: number;
+  year: number;
+  title: string;
+  description: string;
+};
+
+const timelineData: Hito[] = [
+  {
+    id: 1,
+    year: 2018,
+    title: '',
+    description: '',
+  },
+  {
+    id: 2,
+    year: 2020,
+    title: '',
+    description: '',
+  },
+  {
+    id: 3,
+    year: 2022,
+    title: '',
+    description: '',
+  },
+  {
+    id: 4,
+    year: 2025,
+    title: '',
+    description: '',
+  },
+  {
+    id: 5,
+    year: 2025,
+    title: '',
+    description: '',
+  }
+];
+
+
+const Timeline: React.FC = () => {
+  return (
+    <section id="historia" className="py-16 bg-fuchsia-300 text-black">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          Habilidades Blandas y Duras⚖️🎙️
+        </h2>
+        
+        <div className="relative border-l-4 border-fuchsia-950 pl-6 ml-4">
+          
+          {timelineData.map((hito) => (
+            <div key={hito.id} className="mb-10">
+              
+              {/* Círculo del Hito (Punto en la línea) */}
+              <div className="absolute w-5 h-5 bg-fuchsia-950 rounded-full mt-1.5 -left-3"></div>
+
+              {/* Contenido de la Tarjeta (Con efecto hover) */}
+              <div className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border-l-4 border-fuchsia-950">
+                <time className="text-sm font-semibold text-fuchsia-950">{hito.year}</time>
+                <h3 className="text-xl font-bold mt-1 mb-2">{hito.title}</h3>
+                <p className="text-gray-600">{hito.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 
 // Carrusel de educación
 const carouselImages = [
@@ -61,8 +134,8 @@ export default function Home() {
                 <Image
                   src={"/img/Image/logo_lin.png"}
                   width={35}
-                  height={100}
-                  alt={"100"}
+                  height={35} // CORRECCIÓN: Ajuste de la altura para evitar distorsión
+                  alt={"LinkedIn Logo"}
                 />
               </a>
             </div>
@@ -76,13 +149,11 @@ export default function Home() {
                 <Image
                   src={"/img/Image/logo_github.png"}
                   width={35}
-                  height={100}
-                  alt="No se"
+                  height={35} // CORRECCIÓN: Ajuste de la altura para evitar distorsión
+                  alt="GitHub Logo"
                 />
               </a>
             </div>
-
-
 
             <Link href="/Aspiraciones" passHref>
               <span className="bg-white text-black py-2 px-4 rounded-lg font-bold cursor-pointer inline-block">
@@ -95,7 +166,7 @@ export default function Home() {
 
 
       <div
-        className="**bg-fuchsia-300** bg-cover bg-center w-full min-h-screen flex items-end justify-left p-9"
+        className="bg-fuchsia-300 bg-cover bg-center w-full min-h-screen flex items-end justify-left p-9"
         style={{ backgroundImage: "url('/img/back_ground.jpg')" }}
       >
         <div
@@ -108,40 +179,14 @@ export default function Home() {
           <span>en el uso de Office 365, inglés y programación</span>
         </div>
       </div>
-
-      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
-        <br />
-        <br />
-        <h2 className="text-black text-3xl font-bold mb-8">Sobre mí</h2>
-        <div className="flex flex-col md:flex-row gap-6 mb-9 items-start justify-center">
-          <div className="w-full md:w-1/3 flex justify-center">
-
-            {/* Ajuste de la primera imagen*/}
-            <Image
-              className="rounded-3xl max-w-xs w-full h-auto"
-              src="/img/imagen.jpg"
-              alt="profile_photo"
-              width={600}
-              height={400}
-            />
-          </div>
-
-          <div className="w-full md:w-2/3 flex justify-center">
-            {/* Ajuste de imagenes en la sección Acerca de mi*/}
-            <Image
-              className="rounded-3xl max-w-lg w-full h-auto"
-              src="/img/imagen01.jpg"
-              alt="Grupo Digital Talent"
-              width={500} // Un valor de ancho más realista para el placeholder
-              height={150} // Un valor de alto más realista para el placeholder
-            />
-
-          </div>
-        </div>
-      </section>
+      
+      {/* -------------------------------------------------- */}
+      {/* ESTA ES LA NUEVA SECCIÓN DE "SOBRE MÍ" (TIMELINE)  */}
+      {/* -------------------------------------------------- */}
+      <Timeline />
 
 
-      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+      <section className="bg-fuchsia-300 bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl font-bold mb-8">Educación</h2>
 
         <div className="relative">
@@ -197,7 +242,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+      <section className="bg-fuchsia-300 bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Proyectos</h2>
         <section className="w-full max-w-6xl">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
@@ -248,7 +293,7 @@ export default function Home() {
         </section>
       </section>
 
-      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+      <section className="bg-fuchsia-300 bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Logros</h2>
         <p className="text-black" >En edición :</p>
       </section>
