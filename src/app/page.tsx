@@ -31,19 +31,23 @@ export default function Home() {
     },
   });
 
-  // Controladores del carrusel
+  // Controladores del pequeño carrusel
   const handlePrev = () => instanceRef.current?.prev();
   const handleNext = () => instanceRef.current?.next();
 
   return (
     <>
+      {/* Creación del header de mi portafolio */}
+
       <header className="bg-fuchsia-950 text-white mb-16">
         <div className="container mx-auto flex justify-between items-center p-4 sm:p-6 lg:p-10">
           <span className="text-xl font-semibold">Mi portafolio</span>
           <div className="flex space-x-4">
+
             <button className="text-white py-2 px-4 rounded-lg font-bold">
               Conexiones
             </button>
+
             <Link href="/Aspiraciones" passHref>
               <span className="bg-white text-black py-2 px-4 rounded-lg font-bold cursor-pointer inline-block">
                 Aspiraciones
@@ -69,26 +73,35 @@ export default function Home() {
         </div>
       </div>
 
+      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+        <br />
+        <br />
+        <h2 className="text-black text-3xl font-bold mb-8">Sobre mí</h2>
+        <div className="flex flex-col md:flex-row gap-6 mb-9 items-start justify-center">
+          <div className="w-full md:w-1/3 flex justify-center">
 
-      <div className="**bg-fuchsia-300** text-black">
-        <div className="container mx-auto p-8">
-          <br />
-          <br />
-          <h2 className="text-black text-3xl font-bold mb-6">Sobre mí</h2>
-          <br></br>
-          <br></br>
-          <div className="flex justify-left md:justify-left mb-9">
+            {/* Ajuste de la primera imagen*/}
             <Image
-              className="rounded-3xl"
+              className="rounded-3xl max-w-xs w-full h-auto"
               src="/img/imagen.jpg"
               alt="profile_photo"
-              width={150}
-              height={100} // Ajuste de height
-              style={{ width: 'auto', height: 'auto' }}
+              width={300}
+              height={400}
+            />
+          </div>
+
+          <div className="w-full md:w-2/3 flex justify-center">
+            {/* Ajuste de imagenes en la sección Acerca de mi*/}
+            <Image
+              className="rounded-3xl max-w-lg w-full h-auto"
+              src="/img/imagen01.jpg"
+              alt="Grupo Digital Talent"
+              width={600} // Un valor de ancho más realista para el placeholder
+              height={400} // Un valor de alto más realista para el placeholder
             />
           </div>
         </div>
-      </div>
+      </section>
 
 
       <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
@@ -107,7 +120,7 @@ export default function Home() {
                     alt={img.title}
                     width={250}
                     height={150}
-                    
+
                     className="rounded-lg object-contain h-36 w-auto"
                   />
                   <p className="mt-4 text-center font-semibold text-gray-800">{img.title}</p>
