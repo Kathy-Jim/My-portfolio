@@ -219,6 +219,11 @@ export default function Home() {
           </div>
         </section>
       </section>
+
+      <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
+        <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Logros</h2>
+        <p className="text-black" >En edición :)</p>
+      </section>
     </>
   );
 }
