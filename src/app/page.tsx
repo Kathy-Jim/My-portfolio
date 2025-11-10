@@ -63,9 +63,9 @@ export default function Home() {
         >
           <strong>Katherine Jimenez</strong>
           <br />
-          <span>Futura Abogada con master en</span>
+          <span>Futura Abogada con master en criminología, bases</span>
           <br />
-          <span>criminología</span>
+          <span>en el uso de Office 365, inglés y programación</span>
         </div>
       </div>
 
@@ -80,10 +80,10 @@ export default function Home() {
           <div className="flex justify-left md:justify-left mb-9">
             <Image
               className="rounded-3xl"
-              src="/img/img01.png"
+              src="/img/imagen.jpg"
               alt="profile_photo"
-              width={350}
-              height={0} // Ajuste de height
+              width={150}
+              height={100} // Ajuste de height
               style={{ width: 'auto', height: 'auto' }}
             />
           </div>
