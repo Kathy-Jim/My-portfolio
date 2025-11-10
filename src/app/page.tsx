@@ -5,12 +5,20 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import router from "next/router";
 
 // Carrusel de educación
 const carouselImages = [
   { id: "1", src: "/img/logo_hilasal.jpg", title: "¡Supérate! Hilasal" },
   { id: "2", src: "/img/logo_sanjose.png", title: "CECE San José" },
   { id: "3", src: "/img/logo_kodigo.jpg", title: "Kodigo" },
+];
+
+// Galeria de imagenes de proyectos
+const galleryImages = [
+  { id: "1", src: "/img/Whispering_books.jpg", title: "Podcast de libros", href: "https://open.spotify.com/show/5d68zkHGvr9xl7uiFZrzDY?si=1PNUTCsdQIq1rQJaEg7_Ow" },
+  { id: "2", src: "/img/leafdream.png", title: "LeafDream", href: "https://github.com/Kathy-Jim/LeafDream.github.io.git" },
+  { id: "3", src: "/img/Finacc.png", title: "Finacc", href: "https://github.com/Kathy-Jim/Finacc.github.io.git" },
 ];
 
 export default function Home() {
@@ -85,7 +93,7 @@ export default function Home() {
               className="rounded-3xl max-w-xs w-full h-auto"
               src="/img/imagen.jpg"
               alt="profile_photo"
-              width={300}
+              width={600}
               height={400}
             />
           </div>
@@ -96,9 +104,10 @@ export default function Home() {
               className="rounded-3xl max-w-lg w-full h-auto"
               src="/img/imagen01.jpg"
               alt="Grupo Digital Talent"
-              width={600} // Un valor de ancho más realista para el placeholder
-              height={400} // Un valor de alto más realista para el placeholder
+              width={500} // Un valor de ancho más realista para el placeholder
+              height={150} // Un valor de alto más realista para el placeholder
             />
+
           </div>
         </div>
       </section>
@@ -162,7 +171,53 @@ export default function Home() {
 
       <section className="**bg-fuchsia-300** bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl bg-justify-center font-bold mb-8">Proyectos</h2>
+        <section className="w-full max-w-6xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
+            {galleryImages.map((img) => {
 
+              // 1. Determinar si el enlace es externo o interno
+              const isExternal = img.href.startsWith("http");
+
+              // 2. Definir el contenido que siempre va dentro del enlace (la imagen y el título)
+              const content = (
+                <div className="cursor-pointer group">
+                  {/* 🔳 Recuadro cuadrado */}
+                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={img.src}
+                      alt={img.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <p className="mt-2 text-center text-gray-700 font-medium text-sm sm:text-base">
+                    {img.title}
+                  </p>
+                </div>
+              );
+
+              // 3. Devolver el componente de enlace apropiado
+              if (isExternal) {
+                return (
+                  <a
+                    key={img.id}
+                    href={img.href}
+                    target="_blank" // Abre el link en una nueva pestaña
+                    rel="noopener noreferrer" // Mejora la seguridad y rendimiento
+                  >
+                    {content}
+                  </a>
+                );
+              } else {
+                return (
+                  <Link key={img.id} href={img.href}>
+                    {content}
+                  </Link>
+                );
+              }
+            })}
+          </div>
+        </section>
       </section>
     </>
   );
