@@ -27,7 +27,7 @@ const timelineData: Hito[] = [
   },
   {
     id: 3,
-    title: 'Conocimiento en Office 365 e Inglés',
+    title: 'Conocimiento en Office 365, inglés y empatía',
     description: 'En sintonía con apps de Microsoft, y también certificada en inglés',
   },
   {
@@ -49,7 +49,7 @@ const Timeline: React.FC = () => {
     <section id="historia" className="py-16 text-black">
       <div className="container mx-auto px-4 max-w-3xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Habilidades Blandas y Duras⚖️🎙️
+          Mis Habilidades y Valores⚖️🎙️
         </h2>
 
         <div className="relative border-l-4 border-fuchsia-950 pl-6 ml-4">
