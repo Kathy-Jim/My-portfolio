@@ -27,7 +27,7 @@ const timelineData: Hito[] = [
   {
     id: 3,
     title: 'Conocimiento en Office 365, inglés y empatía',
-    description: 'En sintonía con apps de Microsoft, y también certificada en inglés',
+    description: 'En sintonía con apps de Microsoft, y también certificada en inglés pero también de la mano con el valor de la empatía al realizar proyectos en equipos o en solitario',
   },
   {
     id: 4,
