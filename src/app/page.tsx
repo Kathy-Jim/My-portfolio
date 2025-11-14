@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import React from 'react';
 
 
@@ -62,7 +61,6 @@ const Timeline: React.FC = () => {
 
               {/* Contenido de la Tarjeta (Con efecto hover) */}
               <div className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border-l-4 border-fuchsia-950">
-                <time className="text-sm font-semibold text-fuchsia-950">{hito.year}</time>
                 <h3 className="text-xl font-bold mt-1 mb-2">{hito.title}</h3>
                 <p className="text-gray-600">{hito.description}</p>
               </div>
