@@ -6,7 +6,6 @@ import "keen-slider/keen-slider.min.css";
 import { useState } from "react";
 import React from 'react';
 
-
 type Hito = {
   id: number;
   title: string;
@@ -48,7 +47,7 @@ const Timeline: React.FC = () => {
     <section id="historia" className="py-16 text-black">
       <div className="container mx-auto px-4 max-w-3xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Mis Habilidades y Valores⚖️🎙️
+          Mis Habilidades y Valores
         </h2>
 
         <div className="relative border-l-4 border-fuchsia-950 pl-6 ml-4">
@@ -121,7 +120,7 @@ export default function Home() {
 
       <header className="bg-fuchsia-950 text-white mb-16">
         <div className="container mx-auto flex justify-between items-center p-4 sm:p-6 lg:p-10">
-          <span className="text-xl font-semibold">Katherine Jimenez⚖️📚</span>
+          <span className="text-xl font-semibold">Katherine Jimenez</span>
           <div className="flex space-x-4">
 
             <div>
@@ -161,9 +160,20 @@ export default function Home() {
 
 
       <div
-        className="bg-fuchsia-300 bg-cover bg-center w-full min-h-screen flex items-end justify-left p-9"
+        className="bg-fuchsia-300 bg-cover bg-center w-full min-h-screen flex items-end justify-left p-9 relative"
         style={{ backgroundImage: "url('/img/back_ground.jpg')" }}
       >
+        {/* 1. COMPONENTE DE IMAGEN AGREGADO DENTRO DEL DIV DE FONDO */}
+        <Image
+          className="absolute top-1/4 left-1/10 rounded-2xl"
+          src="/img/imagen.jpg"
+          width={150}
+          height={100}
+          alt="Imagen de perfil" // Siempre añade un 'alt'
+        // Puedes agregar clases de posición si la quieres fija, e.g., 'absolute top-1/4 left-1/4'
+        />
+
+        {/* 2. EL DIV DE TEXTO PERMANECE ABAJO */}
         <div
           className="bg-black/70 text-white p-4 rounded-xl font-normal text-xl"
         >
@@ -208,14 +218,14 @@ export default function Home() {
 
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-fuchsia-950/70 hover:bg-fuchsia-950 text-white p-2 rounded-full shadow-lg transition duration-300 z-10 hidden md:block"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-fuchsia-950/70 text-white transition duration-300 md:block"
             aria-label="Anterior"
           >
             ◀
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-fuchsia-950/70 hover:bg-fuchsia-950 text-white p-2 rounded-full shadow-lg transition duration-300 z-10 hidden md:block"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-fuchsia-950/70 text-white transition duration-300 md:block"
             aria-label="Siguiente"
           >
             ▶
@@ -237,106 +247,117 @@ export default function Home() {
         </div>
       </section>
 
+      {/* -------------------------------------------------- */}
+      {/* 1. SECCIÓN DE PROYECTOS (APLICADA CORRECCIÓN)  */}
+      {/* -------------------------------------------------- */}
       <section className="bg-cover bg-center container mx-auto p-9">
         <h2 className="text-black text-3xl text-center font-bold mb-8">Proyectos</h2>
-        <section className="w-full max-w-6xl mx-auto"> {/* CAMBIO: Añadido mx-auto para centrar el bloque de proyectos */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
-            {galleryImages.map((img) => {
+        {/* NUEVO CONTENEDOR FLEXBOX PARA CENTRAR TODO EL BLOQUE DEL GRID */}
+        <div className="flex justify-center">
+          <section className="w-full max-w-6xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
+              {galleryImages.map((img) => {
 
-              // 1. Determinar si el enlace es externo o interno
-              const isExternal = img.href.startsWith("http");
+                // 1. Determinar si el enlace es externo o interno
+                const isExternal = img.href.startsWith("http");
 
-              // 2. Definir el contenido que siempre va dentro del enlace (la imagen y el título)
-              const content = (
-                <div className="cursor-pointer group">
-                  {/* 🔳 Recuadro cuadrado */}
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src={img.src}
-                      alt={img.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
+                // 2. Definir el contenido que siempre va dentro del enlace (la imagen y el título)
+                const content = (
+                  <div className="cursor-pointer group">
+                    {/* 🔳 Recuadro cuadrado */}
+                    <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src={img.src}
+                        alt={img.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <p className="mt-2 text-center text-gray-700 font-medium text-sm sm:text-base">
+                      {img.title}
+                    </p>
                   </div>
-                  <p className="mt-2 text-center text-gray-700 font-medium text-sm sm:text-base">
-                    {img.title}
-                  </p>
-                </div>
-              );
+                );
 
-              // 3. Devolver el componente de enlace apropiado
-              if (isExternal) {
-                return (
-                  <a
-                    key={img.id}
-                    href={img.href}
-                    target="_blank" // Abre el link en una nueva pestaña
-                    rel="noopener noreferrer" // Mejora la seguridad y rendimiento
-                  >
-                    {content}
-                  </a>
-                );
-              } else {
-                return (
-                  <Link key={img.id} href={img.href}>
-                    {content}
-                  </Link>
-                );
-              }
-            })}
-          </div>
-        </section>
+                // 3. Devolver el componente de enlace apropiado
+                if (isExternal) {
+                  return (
+                    <a
+                      key={img.id}
+                      href={img.href}
+                      target="_blank" // Abre el link en una nueva pestaña
+                      rel="noopener noreferrer" // Mejora la seguridad y rendimiento
+                    >
+                      {content}
+                    </a>
+                  );
+                } else {
+                  return (
+                    <Link key={img.id} href={img.href}>
+                      {content}
+                    </Link>
+                  );
+                }
+              })}
+            </div>
+          </section>
+        </div>
       </section>
 
-      {/* SECCIÓN DE LOGROS CORREGIDA Y COMPLETADA */}
-      <section className="bg-cover bg-center container mx-auto p-9">
+      {/* -------------------------------------------------- */}
+      {/* 2. SECCIÓN DE LOGROS (APLICADA CORRECCIÓN)  */}
+      {/* -------------------------------------------------- */}
+      <section className="bg-cover bg-center container mx-auto p-29">
         <h2 className="text-black text-3xl text-center font-bold mb-8">Logros</h2>
-        <section className="w-full max-w-6xl mx-auto"> {/* CAMBIO: Añadido mx-auto para centrar el bloque de logros */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
-            {logrosImages.map((img) => {
+        {/* NUEVO CONTENEDOR FLEXBOX PARA CENTRAR TODO EL BLOQUE DEL GRID */}
+        <div className="flex justify-center">
+          <section className="w-full max-w-6xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center">
+              {logrosImages.map((img) => {
 
-              // Determinar si el enlace es externo o interno
-              const isExternal = img.href.startsWith("http");
+                // Determinar si el enlace es externo o interno
+                const isExternal = img.href.startsWith("http");
 
-              const content = (
-                <div className="cursor-pointer group">
-                  {/* 🔳 Recuadro cuadrado */}
-                  <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src={img.src}
-                      alt={img.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
+                const content = (
+                  <div className="cursor-pointer group">
+                    {/* 🔳 Recuadro cuadrado */}
+                    <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src={img.src}
+                        alt={img.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <p className="mt-2 text-center text-gray-700 font-medium text-sm sm:text-base">
+                      {img.title}
+                    </p>
                   </div>
-                  <p className="mt-2 text-center text-gray-700 font-medium text-sm sm:text-base">
-                    {img.title}
-                  </p>
-                </div>
-              );
+                );
 
-              // Devolver el componente de enlace apropiado (Link de Next.js o <a> tradicional)
-              if (isExternal) {
-                return (
-                  <a
-                    key={img.id}
-                    href={img.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {content}
-                  </a>
-                );
-              } else {
-                return (
-                  <Link key={img.id} href={img.href}>
-                    {content}
-                  </Link>
-                );
-              }
-            })}
-          </div>
-        </section>
+                // Devolver el componente de enlace apropiado (Link de Next.js o <a> tradicional)
+                if (isExternal) {
+                  return (
+                    <a
+                      key={img.id}
+                      href={img.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {content}
+                    </a>
+                  );
+                } else {
+                  return (
+                    <Link key={img.id} href={img.href}>
+                      {content}
+                    </Link>
+                  );
+                }
+              })}
+            </div>
+          </section>
+        </div>
       </section>
     </>
   );
